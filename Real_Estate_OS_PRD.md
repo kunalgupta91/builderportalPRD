@@ -112,12 +112,44 @@ REOS is not "another CRM"—it's the operating system that CRMs aspire to be. We
    - Operations: Workflow automation and task management.
 
 ### Business Processes
-1. **Lead Management**: Capture leads from multiple sources, score with AI, assign to dealers, and nurture through automated sequences.
+1. **Lead Management**: Capture leads from public property browsing, forms, WhatsApp, and third-party integrations → score with AI → assign to dealers → nurture through automated sequences.
 2. **Inventory Management**: Central unit registry with status tracking, pricing, and availability—visible differently to each role.
 3. **Booking & Payments**: End-to-end booking flow with payment gateways, EMI options, and financial tracking.
 4. **Dealer Management**: Onboarding, commission calculation, performance tracking, and settlement.
-5. **Customer Lifecycle**: From inquiry to handover, with personalized journeys and support.
+5. **Customer Lifecycle**: From public inquiry → lead conversion → customer onboarding → booking → handover, with personalized journeys and support.
 6. **Reporting & Analytics**: Real-time dashboards, predictive analytics, and AI-generated insights.
+7. **Builder Onboarding**: Step-by-step setup wizard for new tenants to import projects, units, teams, and dealers.
+
+### Builder Onboarding Process
+
+#### Phase 1: Account Setup (Week 1)
+1. **Tenant Registration**: Builder signs up → email verification → basic company details.
+2. **Domain Configuration**: Custom subdomain setup (builder-name.reos.com).
+3. **Branding Setup**: Logo upload, color scheme, and brand guidelines.
+
+#### Phase 2: Data Import (Weeks 1-2)
+1. **Project Portfolio Import**: Bulk upload of all projects with locations and basic details.
+2. **Unit Inventory Setup**: Mass import of units with specifications, pricing, and availability.
+3. **Team Structure Creation**: Employee hierarchy import with roles and permissions.
+4. **Dealer Network Onboarding**: Bulk dealer registration with territories and commission rates.
+
+#### Phase 3: System Configuration (Weeks 2-3)
+1. **Workflow Customization**: Approval chains, notification preferences, and automation rules.
+2. **Integration Setup**: Payment gateways, WhatsApp Business API, and third-party connections.
+3. **AI Assistant Training**: Upload knowledge base documents and configure AI behavior.
+4. **Portal Customization**: White-label branding and feature enablement.
+
+#### Phase 4: Go-Live Preparation (Week 3-4)
+1. **Data Validation**: AI-powered data quality checks and cleansing.
+2. **Team Training**: Guided tutorials and AI assistant onboarding.
+3. **Test Transactions**: End-to-end testing with sample data.
+4. **Launch Checklist**: Final verification and go-live approval.
+
+#### Phase 5: Post-Launch Support (Ongoing)
+1. **Success Manager Assignment**: Dedicated onboarding specialist for first 30 days.
+2. **Migration Assistance**: Help with legacy system data transfer.
+3. **Optimization Sessions**: Regular check-ins to optimize usage and workflows.
+4. **Advanced Feature Adoption**: Guided rollout of advanced capabilities.
 
 ### Success Metrics
 - **User Adoption**: 80% of tenant users active weekly.
@@ -147,9 +179,30 @@ REOS is not "another CRM"—it's the operating system that CRMs aspire to be. We
 - **Team Management**: Employee hierarchy, roles, and permissions.
 - **Analytics**: Custom reports, predictive insights, and AI recommendations.
 - **AI Assistant**: Contextual help, deal summaries, and automation suggestions.
+- **Data Onboarding**: Bulk import wizards for projects, units, employees, and dealers.
+
+#### Data Import & Setup Processes
+
+##### Project & Inventory Setup
+- **Bulk Project Import**: CSV/Excel upload with project details, locations, and specifications.
+- **Unit Catalog Builder**: Mass unit creation with floor plans, pricing, and amenity templates.
+- **Image & Media Upload**: Batch upload of property photos, virtual tours, and floor plans.
+- **Pricing Engine Setup**: Dynamic pricing rules, discount structures, and EMI configurations.
+
+##### Team & Dealer Onboarding
+- **Employee Bulk Import**: CSV upload with roles, departments, and contact information.
+- **Dealer Network Setup**: Mass dealer registration with commission structures and territories.
+- **Hierarchy Builder**: Visual organization chart creation with reporting relationships.
+- **Permission Templates**: Pre-built role templates with customizable permissions.
+
+##### Data Migration Tools
+- **Legacy CRM Import**: Connectors for Salesforce, HubSpot, and custom CRM systems.
+- **ERP Integration**: SAP, Oracle, and custom ERP data synchronization.
+- **Third-Party Data Sources**: Property databases, market data, and demographic information.
+- **Validation & Cleansing**: AI-powered data quality checks and duplicate detection.
 
 #### 3. CRM & Lead Management
-- **Lead Capture**: Forms, API, WhatsApp, and third-party integrations.
+- **Lead Capture**: Public property portal inquiries, forms, API, WhatsApp, and third-party integrations.
 - **AI Lead Scoring**: Predictive conversion probability based on behavior and demographics.
 - **Lead Assignment**: Automated routing to dealers based on location, performance, and capacity.
 - **Nurturing Campaigns**: Email, SMS, WhatsApp sequences with AI personalization.
@@ -157,13 +210,17 @@ REOS is not "another CRM"—it's the operating system that CRMs aspire to be. We
 - **Activity Tracking**: Calls, meetings, site visits logged automatically.
 
 #### 4. Customer Portal
-- **Property Browsing**: Search, filter, and virtual tours.
-- **Booking Flow**: Application, document upload, payment, and confirmation.
-- **Progress Tracking**: Construction updates, milestones, and timelines.
-- **Payment Management**: EMI schedules, payment history, and reminders.
-- **Support Ticketing**: Self-service FAQs, ticket creation, and chat support.
-- **Document Access**: Download agreements, receipts, and legal documents.
-- **Referral Program**: Earn rewards for successful referrals.
+- **Public Section** (No registration required):
+  - Property browsing and search
+  - Virtual tours and project information
+  - Basic inquiry forms (creates leads)
+  - EMI calculator and financing info
+- **Authenticated Section** (After builder approval):
+  - Booking flow with document upload and payment
+  - Progress tracking with construction updates
+  - Payment management with EMI schedules
+  - Support ticketing and document downloads
+  - Referral program with rewards
 
 #### 5. Dealer / Broker Portal
 - **Lead Dashboard**: Assigned leads with priority scoring.
@@ -414,9 +471,10 @@ REOS is not "another CRM"—it's the operating system that CRMs aspire to be. We
 3. **Commission Tracking**: View earnings → Request settlement.
 
 #### Customer Journey
-1. **Discovery**: Browse properties → Shortlist → Book visit.
-2. **Booking**: Apply → Upload docs → Pay → Track progress.
-3. **Post-Booking**: View updates → Make payments → Access support.
+1. **Public Discovery**: Browse properties anonymously → Shortlist favorites → Express interest (becomes lead).
+2. **Lead Conversion**: Builder reviews → Approves → Customer account created → Full portal access granted.
+3. **Booking**: Apply → Upload docs → Pay → Track progress.
+4. **Post-Booking**: View updates → Make payments → Access support.
 
 ### Wireframe Descriptions
 
@@ -427,7 +485,13 @@ REOS is not "another CRM"—it's the operating system that CRMs aspire to be. We
 - **Quick Actions**: Create lead, assign task, generate report.
 - **Recent Activity**: Timeline of team actions.
 
-#### Customer Portal
+#### Public Property Portal
+- **Hero Section**: Featured projects, search bar, location filters.
+- **Property Grid**: Cards with images, prices, specs, "I'm Interested" buttons.
+- **Project Details**: Gallery, floor plans, amenities, location map.
+- **Inquiry Form**: Name, phone, email, preferred units (creates lead).
+
+#### Customer Portal (Authenticated)
 - **Navigation**: Home, Properties, My Bookings, Payments, Support.
 - **Property Search**: Filters for location, price, type, amenities.
 - **Property Card**: Image, price, specs, virtual tour button.
@@ -435,7 +499,8 @@ REOS is not "another CRM"—it's the operating system that CRMs aspire to be. We
 
 ### Mobile UX Flows
 - **Sales App**: Lead list → Lead details → Actions (call, visit, update).
-- **Customer PWA**: Property grid → Details → Book visit → Payment.
+- **Public PWA**: Property grid → Details → Express interest → Basic inquiry.
+- **Customer PWA** (Authenticated): Property grid → Details → Book visit → Payment.
 - **Offline Mode**: Cached data with sync indicators.
 
 ### Empty States
@@ -819,6 +884,8 @@ type Mutation {
 - Core builder OS with AI assistant.
 - Basic portals for all roles.
 - Essential integrations (payments, WhatsApp).
+- Builder onboarding wizard with data import tools.
+- Public property portal for lead generation.
 
 ### Phase 2 (Months 7-12): Feature Expansion
 - Advanced AI features (predictive analytics, voice).
