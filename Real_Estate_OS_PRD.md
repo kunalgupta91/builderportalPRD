@@ -120,6 +120,23 @@ REOS is not "another CRM"—it's the operating system that CRMs aspire to be. We
 6. **Reporting & Analytics**: Real-time dashboards, predictive analytics, and AI-generated insights.
 7. **Builder Onboarding**: Step-by-step setup wizard for new tenants to import projects, units, teams, and dealers.
 
+### Product Editions & Tiering
+To make REOS practical for development and commercialization, the platform should be defined in three editions:
+- **Core CRM**: Essential builder CRM capabilities with lead, inventory, booking, dealer management, customer portal, and payment tracking.
+- **Growth Suite**: Revenue-driving automation, including marketing automation, AI assistant, WhatsApp workflows, analytics, and campaign management.
+- **Enterprise Suite**: Governance and extensibility, including white-labeling, workflow engine, audit console, AI governance, and API marketplace.
+
+### MVP Boundaries
+An effective MVP must prioritize the Core CRM and a constrained Growth Suite:
+- Core CRM: lead management, inventory, booking, dealer portal, customer portal, payments.
+- Growth Suite: WhatsApp integration, AI-assisted recommendations, analytics dashboards.
+- Exclude Enterprise Suite features from the initial MVP and phase them into later releases.
+
+### Development Guidance
+- Implement features in vertical slices aligned to edition boundaries.
+- Use edition definitions for sprint planning, backlog prioritization, and release gating.
+- Preserve tenant isolation and auditability as first-class requirements for every edition.
+
 ### Builder Onboarding Process
 
 #### Phase 1: Account Setup (Week 1)
@@ -201,7 +218,61 @@ REOS is not "another CRM"—it's the operating system that CRMs aspire to be. We
 - **Third-Party Data Sources**: Property databases, market data, and demographic information.
 - **Validation & Cleansing**: AI-powered data quality checks and duplicate detection.
 
-#### 3. CRM & Lead Management
+#### 3. CRM Lifecycle & Workflow Modeling
+- **Opportunity States**: Lead → Qualified → Site Visit → Negotiation → Booking → Payment Pending → Agreement Generated → Closed Won.
+- **State Definitions**: Each state includes role permissions, SLA targets, automation triggers, escalation rules, and retry handling.
+- **Workflow Engine**: Visual workflow builder with event-triggered actions, approval chains, conditional routing, and exception handling.
+- **SLA Monitoring**: Automatic aging alerts, escalation assignments, and overdue remediation.
+- **Execution Auditing**: Workflow step history, status changes, and rollback support.
+
+#### 4. Real Estate Intelligence
+- **Inventory Intelligence**: Unsold inventory prediction, aging inventory heatmaps, pricing pressure, and sales velocity.
+- **Geo Intelligence**: Nearby schools, hospitals, commute scores, area appreciation, and investment ranking.
+- **Buyer Intelligence**: Purchase probability, loan eligibility prediction, budget mismatch alerts, and risk scoring.
+- **Demand Analysis**: Project-level demand signals, tower-level absorption, and competitive benchmarking.
+- **Actionable Insights**: Real estate KPIs surfaced in dashboards and deal recommendations.
+
+#### 5. AI Governance & Safety
+- **AI Audit Logs**: Record all prompts, responses, decisions, and user overrides.
+- **Confidence Scores**: Display confidence and risk metadata for AI outcomes.
+- **Human Approval**: Require approvals for pricing, contract generation, booking confirmations, and critical automations.
+- **Prompt Registry**: Versioned prompt templates, prompt history, and explainability metadata.
+- **Tenant Isolation**: Separate embedding stores, prompt histories, and AI context per tenant.
+- **Hallucination Controls**: Guardrails, knowledge source constraints, and fallback workflows for low-confidence output.
+
+#### 6. Operational CRM Features
+- **Unified Customer Timeline**: Calls, emails, WhatsApp, visits, payments, notes, AI summaries, and support interactions.
+- **Calendar Sync**: Google Calendar and Outlook integration for meetings, site visits, and reminders.
+- **Visit Scheduling**: Customer and dealer scheduling with availability, location, and feedback capture.
+- **Smart Notifications**: Follow-up reminders, payment delay alerts, dealer inactivity alerts, and SLA breach warnings.
+- **Duplicate Detection**: Smart deduplication, merge suggestions, and sanitization for contacts and leads.
+
+#### 7. Enterprise Administration
+- **Audit Console**: User action logs, permission changes, AI activity logs, and data export history.
+- **User Activity Logs**: Session tracking, device metadata, and abnormal access detection.
+- **Security Console**: Device tracking, session management, suspicious login alerts, and access reviews.
+- **Compliance Center**: GDPR-style deletion, consent tracking, retention policy management, and legal hold support.
+- **Data Export**: Tenant-level exports for CRM, transaction, and audit datasets.
+
+#### 8. Extensibility & Ecosystem
+- **Marketplace**: Catalog for integrations, plugins, workflow templates, and AI agents.
+- **Developer Platform**: SDKs, developer sandbox, API docs, and sample apps.
+- **Webhooks & Events**: Event subscriptions for lead updates, bookings, payments, and workflow outcomes.
+- **Custom UI Extensions**: Tenant-defined components, portal widgets, and branded experiences.
+- **Integration Builder**: Low-code connector creation and maintenance.
+
+#### 9. Data Model & Domain Architecture
+- **Commissions**: Separate model for dealer commissions, settlement schedules, and incentive rules.
+- **Workflow Executions**: Execution history, step status, actions, and outcome metadata.
+- **Audit Logs**: Action-level audit trail for compliance and forensic analysis.
+- **AI Interactions**: Prompt, response, confidence, source, and approval metadata.
+- **Notification History**: Channel, content, delivery status, and engagement.
+- **Marketing Campaigns**: Campaign definitions, audience segments, performance metrics, and ROI.
+- **Support Tickets**: Ticket lifecycle, SLAs, assignments, and resolution notes.
+- **Media Assets**: Image, video, document metadata, and usage permissions.
+- **Construction Milestones**: Project phase progress, delay reasons, and quality checks.
+
+#### 10. CRM & Lead Management
 - **Lead Capture**: Public property portal inquiries, forms, API, WhatsApp, and third-party integrations.
 - **AI Lead Scoring**: Predictive conversion probability based on behavior and demographics.
 - **Lead Assignment**: Automated routing to dealers based on location, performance, and capacity.
@@ -457,6 +528,14 @@ REOS is not "another CRM"—it's the operating system that CRMs aspire to be. We
 - **Responsive Grid**: 12-column grid with breakpoints.
 - **Dark Mode**: System preference detection and manual toggle.
 - **Accessibility**: Screen reader support, keyboard navigation.
+
+### UX Principles
+- **Modular Dashboards**: Configurable widgets for role-specific insights.
+- **Minimal Workflow Friction**: Progressive disclosure, clear action flows, and templated tasks.
+- **Command Palette**: Fast keyboard-driven navigation and action discovery.
+- **Empty States**: Contextual CTAs and guidance for first-time use.
+- **Real-Time Feedback**: Notifications, progress indicators, and optimistic UI updates.
+- **Enterprise Usability**: Consistent layout, accessibility, and responsive design across desktop and mobile.
 
 ### User Journeys
 
@@ -754,10 +833,27 @@ type Mutation {
 - **Sales Assistant**: Context-aware recommendations.
 - **Automation Agent**: Workflow optimization.
 - **Analytics Agent**: Predictive insights.
+- **Deal Copilot**: Next action suggestions, deal health scoring, closure predictions.
+- **Voice Agent**: Multilingual call assistance, automatic note capture, and appointment booking.
 
 ### Prompt Management
 - **Template System**: Versioned prompts with A/B testing.
 - **Context Injection**: Tenant-aware prompt engineering.
+
+### AI Governance & Safety
+- **Audit Trail**: Full logging of prompts, responses, approvals, and user overrides.
+- **Confidence Scoring**: Explicit confidence and risk metadata on every AI output.
+- **Explainability**: Source attribution and human-readable reasoning summaries.
+- **Approval Workflows**: Human review gates for critical actions like pricing and contract generation.
+- **Tenant Isolation**: Separate AI contexts, embeddings, and prompt histories per tenant.
+- **Hallucination Controls**: Guardrails, domain constraints, and fallback workflows.
+
+### AI-Native Differentiators
+- **Auto Follow-Up Generation**: AI-crafted nurture sequences and customer reactivation.
+- **AI Search**: Natural language query support across CRM data, e.g. “show delayed payments above 10 lakhs”.
+- **Text-to-Workflow Builder**: Turn business intent into workflow automations using text.
+- **Deal Closure Prediction**: Predictive win probability and risk scoring per opportunity.
+- **Auto Qualification**: AI-driven lead qualification and next-best-action guidance.
 - **Safety Filters**: Content moderation and bias detection.
 
 ---
@@ -881,26 +977,31 @@ type Mutation {
 ## Future Roadmap
 
 ### Phase 1 (Months 1-6): MVP Launch
-- Core builder OS with AI assistant.
-- Basic portals for all roles.
-- Essential integrations (payments, WhatsApp).
-- Builder onboarding wizard with data import tools.
-- Public property portal for lead generation.
+- Core CRM with lead, inventory, booking, dealer management, and customer portal.
+- Public property portal for discovery and lead capture.
+- WhatsApp integration and AI-assisted recommendations.
+- Builder onboarding wizard with bulk data import and tenant configuration.
+- Foundational admin features: tenant management, role-based access, audit logging.
 
-### Phase 2 (Months 7-12): Feature Expansion
-- Advanced AI features (predictive analytics, voice).
-- Mobile app enhancements.
-- Additional integrations and white-label.
+### Phase 2 (Months 7-12): Growth Suite
+- AI assistant, autonomous follow-up, and deal copilot.
+- Marketing automation, campaigns, and WhatsApp workflows.
+- Workflow engine with approval chains, SLA automation, and escalations.
+- Real estate intelligence dashboards, demand analytics, and sales velocity.
+- Developer platform, webhooks, and integration marketplace.
 
-### Phase 3 (Year 2): Enterprise Scaling
-- Multi-region deployment.
-- Advanced analytics and BI.
-- API marketplace and partner ecosystem.
+### Phase 3 (Year 2): Enterprise Suite
+- White labeling, custom branding, and tenant-specific domains.
+- Enterprise administration: audit console, security console, compliance center.
+- AI governance: prompt registry, approval workflows, tenant isolation, audit logs.
+- API marketplace, partner ecosystem, plugins, and extensibility.
+- Multi-region deployment, high availability, and large-tenant performance.
 
 ### Phase 4 (Year 3+): Innovation
-- AR/VR property tours.
-- IoT smart property integration.
-- Blockchain transaction audit.
+- Advanced AI agents, voice agent, and natural language workflow generation.
+- AI search, intelligent deal closure prediction, and auto follow-up.
+- AR/VR property tours, smart property IoT, and blockchain transaction audit.
+- Partner ecosystem expansion and marketplace monetization.
 
 ---
 
